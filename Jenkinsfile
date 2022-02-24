@@ -3,9 +3,8 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh 'echo Good-moring'
+        sh 'User root'
         sh 'sudo apt-get install -y maven'
-
       }
     }
 
