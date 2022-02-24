@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh 'echo Goodmoring'
+        sh 'echo Good-moring'
         withMaven {
             sh 'maven is good to go'
         }
