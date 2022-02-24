@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh 'User root'
         sh 'sudo apt-get install -y maven'
+        sh 'User jenkins'
       }
     }
 
