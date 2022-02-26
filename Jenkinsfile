@@ -6,10 +6,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        withMaven() {
           sh 'mvn test'
-        }
-
       }
     }
 
