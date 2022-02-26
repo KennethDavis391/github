@@ -12,7 +12,7 @@ pipeline {
 
   agent {
     kubernetes
-   }
+   
    stages{
      stage('One'){
      sh 'echo hello'
@@ -20,3 +20,4 @@ pipeline {
    
    }
  }
+}
