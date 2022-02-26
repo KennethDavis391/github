@@ -47,20 +47,6 @@ spec:
              secretKeyRef:
                 name:   mongo-secret
                 key:   mongo-password
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mymongo-service
-spec:
-  type: ClusterIP
-  selector:
-    app: nenaMongo
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 27017
-      nodePort: 32767
 """
 }
   }
