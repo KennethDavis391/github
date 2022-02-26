@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Test') {
       when {
-        branch 'feature/*'
+        branch 'master'
       }
       steps {
         withMaven() {
@@ -15,7 +15,7 @@ pipeline {
 
     stage('Build') {
       when {
-        branch 'main'
+        branch 'master'
       }
       steps {
         withMaven() {
@@ -27,7 +27,7 @@ pipeline {
 
     stage('Docker Build') {
       when {
-        branch 'main'
+        branch 'master'
       }
       steps {
         script {
@@ -40,7 +40,7 @@ pipeline {
 
     stage('Docker Deliver') {
       when {
-        branch 'main'
+        branch 'master'
       }
       steps {
         script {
@@ -55,7 +55,7 @@ pipeline {
 
     stage('Wait for approval') {
       when {
-        branch 'main'
+        branch 'master'
       }
       steps {
         script {
