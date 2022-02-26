@@ -12,7 +12,6 @@ pipeline {
 
   agent {
     kubernetes {
-      label 'the-mongo'
       defaultContainer 'jnlp'
       yaml """
 apiVersion: apps/v1
