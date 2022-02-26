@@ -15,33 +15,23 @@ pipeline {
       label 'the-mongo'
       defaultContainer 'jnlp'
       yaml """
-#-------deployment and services grouped together here in one file
-#-------deployment----------
 apiVersion: apps/v1
 kind: Deployment
-#-------metadate and specs----------
 metadata:
   name: mongo-deployment
   labels:
     app: nenaMongo
 spec:
   replicas: 1
-  #-------selector----------defines which pods belong to this deployment
   selector:
     matchLabels:
       app: nenaMongo
   template:
-  #-------metadate and specs----------each pod gets a unique name, however they share the same label
     metadata:
       labels:
         app: nenaMongo
     spec:
       containers:
-      #-------Containers--------------------lookup the desired image on dockerhub or any repository
-      #-------based on the image, find out the port it usually runs on from documentation
-      #-------based on the database type, find out the username and pass variables from documentation
-      #-------then you need to pass environment variables in this configuration file
-      #-------reference Secret data from the mongo-secret.yaml file
       - name: mongodb
         image: mongo:5.0
         ports:
@@ -58,7 +48,6 @@ spec:
                 name:   mongo-secret
                 key:   mongo-password
 ---
-#---------service INTERNAL----------
 apiVersion: v1
 kind: Service
 metadata:
@@ -72,8 +61,6 @@ spec:
       port: 8080
       targetPort: 27017
       nodePort: 32767
-#-------------the ports for the pod and the service targetPort must match
-#-------------the host port 8080 could be anything, it could even match the pod and service port
 """
 }
   }
