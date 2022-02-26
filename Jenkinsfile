@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'Jenkins-cd'
+      label 'Built-In Node'
     }
 
   }
