@@ -64,7 +64,7 @@ spec:
     }
     stage('mongo') {
       steps {
-        sh 'kubectl apply -f m-ongo.yaml'
+        sh 'kubectl apply -f m-ongo-s.yaml'
       }
     }
     stage('check') {
