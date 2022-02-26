@@ -1,20 +1,3 @@
-pipeline {
-
-  environment {
-    PROJECT = "javasrc"
-    APP_NAME = "gceme"
-    FE_SVC_NAME = "${APP_NAME}-frontend"
-    CLUSTER = "jenkins-cd"
-    CLUSTER_ZONE = "us-east1-d"
-    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-    JENKINS_CRED = "${PROJECT}"
-  }
-
-  agent {
-    kubernetes {
-      label 'the-mongo'
-      defaultContainer 'jnlp'
-      yaml """
 #-------deployment and services grouped together here in one file
 #-------deployment----------
 apiVersion: apps/v1
@@ -71,33 +54,6 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 27017
-      nodePort: 32767
 #-------------the ports for the pod and the service targetPort must match
 #-------------the host port 8080 could be anything, it could even match the pod and service port
-"""
-}
-  }
-  stages {
-    stage('Test') {
-      steps {
-        echo T1p2
-      }
-    }
-    stage('Build and push image with Container Builder') {
-      steps {
-        echo jenkinsEnhanced
-      }
-    }
-    stage('Test') {
-      steps {
-        echo T1p2
-      }
-    }
-    stage('Build and push image with Container Builder') {
-      steps {
-        echo jenkinsEnhanced
-      }
-    }
-
-  }
-}
+#https://www.youtube.com/watch?v=s_o8dwzRlu4
