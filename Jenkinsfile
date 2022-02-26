@@ -12,7 +12,6 @@ pipeline {
 
   agent {
     kubernetes {
-      defaultContainer 'jnlp'
       yaml """
 apiVersion: apps/v1
 kind: Deployment
