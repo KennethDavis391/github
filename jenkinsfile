@@ -10,14 +10,12 @@ pipeline {
     JENKINS_CRED = "${PROJECT}"
   }
 
-  agent {
-    kubernetes
+  agent kubernetes
    
-   stages{
-     stage('One'){
-     sh 'echo hello'
-     }
-   
+  stages{
+    stage('One'){
+    sh 'echo hello'
+     } 
    }
  }
-}
+
