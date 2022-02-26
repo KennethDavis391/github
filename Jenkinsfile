@@ -2,7 +2,7 @@ pipeline {
 
   environment {
     PROJECT = "javasrc"
-    APP_NAME = "gceme"
+    APP_NAME = "mongo"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "jenkins-cd"
     CLUSTER_ZONE = "us-east1-d"
@@ -83,17 +83,23 @@ spec:
         echo T1p2
       }
     }
-    stage('Build and push image with Container Builder') {
+    stage('config') {
       steps {
-        echo jenkinsEnhanced
+        sh 'kubectl apply -f mongo-config.yaml'
+        sh 'kubectl apply -f mongo-secret.yaml'
       }
     }
-    stage('Test') {
+    stage('mongo') {
       steps {
-        echo T1p2
+        sh 'kubectl apply -f m-ongo.yaml'
       }
     }
-    stage('Build and push image with Container Builder') {
+    stage('check') {
+      steps {
+        sh 'kubectl get all -o wide'
+      }
+    }
+    stage('Built') {
       steps {
         echo jenkinsEnhanced
       }
