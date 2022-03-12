@@ -11,7 +11,7 @@ pipeline {
 
         stage('CheckDocker') {
           steps {
-            sh 'sh \'docker images ls -a\''
+            sh 'sh \'docker volume ls\''
           }
         }
 
