@@ -21,6 +21,12 @@ pipeline {
           }
         }
 
+        stage('CheckMVN') {
+          steps {
+            sh 'mvn --version'
+          }
+        }
+
       }
     }
 
