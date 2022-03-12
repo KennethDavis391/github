@@ -12,6 +12,11 @@ pipeline {
         stage('CheckDocker') {
           steps {
             sh 'docker run --help'
+          }
+        }
+
+        stage('CheckDockerAgain') {
+          steps {
             sh 'docker run hello-world'
           }
         }
