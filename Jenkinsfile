@@ -9,9 +9,9 @@ pipeline {
           }
         }
 
-        stage('CheckMVN') {
+        stage('CheckDocker') {
           steps {
-            sh 'sh \'mvn --version\''
+            sh 'sh \'docker images ls -a\''
           }
         }
 
