@@ -3,19 +3,19 @@ pipeline {
   stages {
     stage('Build') {
       parallel {
-        stage('Build') {
+        stage('CheckMVN') {
           when {
             branch 'master'
           }
           steps {
             withMaven() {
-              sh 'mvn clean package'
+              sh 'echo $MVN_HOME'
             }
 
           }
         }
 
-        stage('installshitplease') {
+        stage('CheckJAVA') {
           steps {
             sh 'echo $JAVA_HOME'
           }
