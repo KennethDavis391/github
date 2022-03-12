@@ -11,8 +11,8 @@ pipeline {
 
         stage('CheckDocker') {
           steps {
-            sh 'docker run hello-world'
             sh 'docker run --help'
+            sh 'docker run hello-world'
           }
         }
 
