@@ -17,7 +17,7 @@ pipeline {
 
         stage('installshitplease') {
           steps {
-            sh 'apt-get install update'
+            sh 'echo $JAVA_HOME'
           }
         }
 
