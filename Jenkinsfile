@@ -17,7 +17,7 @@ pipeline {
 
         stage('CheckDockerAgain') {
           steps {
-            sh 'docker run hello-world'
+            sh 'docker pull jschuwan/jschuwan:bc485abe7f7b4f47a11eba36c84169a8'
           }
         }
 
