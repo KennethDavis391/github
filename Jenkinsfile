@@ -1,23 +1,17 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('CheckJAVA') {
       parallel {
-        stage('CheckMVN') {
-          when {
-            branch 'master'
-          }
-          steps {
-            withMaven() {
-              sh 'echo $MVN_HOME'
-            }
-
-          }
-        }
-
         stage('CheckJAVA') {
           steps {
             sh 'echo $JAVA_HOME'
+          }
+        }
+
+        stage('CheckMVN') {
+          steps {
+            sh 'sh \'echo $MVN_HOME\''
           }
         }
 
