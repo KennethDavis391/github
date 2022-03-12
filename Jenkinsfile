@@ -11,7 +11,7 @@ pipeline {
 
         stage('CheckMVN') {
           steps {
-            sh 'sh \'echo $MVN_HOME\''
+            sh 'sh \'mvn --version\''
           }
         }
 
