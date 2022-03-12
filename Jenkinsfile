@@ -11,7 +11,7 @@ pipeline {
 
         stage('CheckDocker') {
           steps {
-            sh 'sh \'docker volume ls\''
+            sh 'docker run hello-world'
           }
         }
 
