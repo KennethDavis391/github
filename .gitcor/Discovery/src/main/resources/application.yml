@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: eureka-server-application
+
+server:
+  port: 8083
+eureka:
+  dashboard:
+    path: '${EUREKA_PATH:/}'
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: ${EUREKA_URI}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,prometheus"

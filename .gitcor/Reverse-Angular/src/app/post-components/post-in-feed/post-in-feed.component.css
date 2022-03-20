@@ -1,0 +1,160 @@
+
+
+#post-tab-label
+{
+  background: var(--lightgray);
+  padding: 15px;
+  width: 50px;
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+  margin-bottom: -5px;
+
+}
+.postername{
+  font-family: Futura;
+  font-weight: bold;
+  padding:20px 20px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #767878;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: .4s;
+
+}
+.posterfullname,.personicon{
+  color: #F2f2f2;
+
+}
+.open-in-full-with-text:hover{
+  cursor: pointer;
+}
+.posterfullname{
+  margin-left: 10px;
+
+}
+.posterusername{
+  color: #D6d7d7;
+  margin-left: 10px;
+}
+.postername:hover{
+  cursor: pointer;
+  background-color: var(--darkgray);
+
+}
+.postcontent
+{
+  margin: 10px;
+  padding: 15px;
+  width: 70%;
+}
+
+.post-container
+{
+  width: 100%;
+  border-radius: 10px;
+  background:#f7f7f7;
+  margin-bottom: 20px;
+}
+
+.time-post-container
+{
+
+  background: #ecebeb;
+  padding: 10px;
+  margin: 15px;
+  border-radius: 10px;
+  display: flex;
+
+}
+.postmain{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.dateTime
+{
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px 15px 5px;
+  color: var(--darkgray);
+  width: 22%;
+}
+
+.dateTime p
+{
+  margin: 0;
+}
+
+.like-icon, .chat-icon
+{
+  margin-left: 20px;
+  color: var(--orange);
+}
+
+.like-icon-with-count, .number-of-posts
+{
+  display: flex;
+  gap: 0.7em;
+  align-items: flex-start;
+}
+
+.like-icon-with-count p
+{
+  font-weight: 500;
+}
+
+.icon-container
+{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+}
+
+.open-in-full-with-text, .share
+{
+  display: flex;
+  gap: .8em;
+}
+
+.share a {
+  display: flex;
+  color: black;
+  text-decoration: none;
+  justify-self: start;
+  gap: .8em;
+}
+
+.full-open-and-share
+{
+  display: flex;
+  gap: 2em;
+  margin-right: 20px;
+}
+
+.likes-and-posts-icons
+{
+  display: flex;
+  gap: 7em;
+}
+
+.icon
+{
+  color: var(--orange);
+}
+
+.post-title{
+  font-family: Futura;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.post-body,.dateTime,.icon-container a{
+  font-family: Futura;
+  font-weight: normal;
+}
+
+

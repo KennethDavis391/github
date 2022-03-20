@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project3-discovery-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: discovery-deployment
+  template:
+    metadata:
+      labels:
+        app: discovery-deployment
+    spec:
+      containers:
+      - image: project2team4/discovery:latest
+        env:
+          - name: REACT_URL
+            value: http://34.70.19.242:3030
+          - name: EUREKA_URI
+            value: http://35.239.70.25:8083/eureka
+        imagePullPolicy: Always
+        name: discoverycontainer
+        ports: 
+        - containerPort: 8083
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: discovery-service
+  name: discovery
+  namespace: default
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http-discovery
+      port: 8083
+      targetPort: 8083
+  selector:
+    app: discovery-deployment
+
+
+
+
+
+

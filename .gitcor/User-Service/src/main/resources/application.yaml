@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: 'user-service'
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://104.154.113.225:5432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:password123}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+SECRET_KEY: ${SECRET:jejdnejdneubdhebhevdevhdbjdnedbehbdetdevyjdfnkemdiendiebcevcebbcecuceicincuebchevcecvyduecie}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI}
+
+angular:
+  uri: ${ANGULAR_URI}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,prometheus"

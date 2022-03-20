@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: api-gateway-application
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_UNIQUE
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowed-origins: ""
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+    config:
+      enabled: false
+
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI}
+
+userservice:
+  url: ${USER_URI}
+
+postservice:
+  url: ${POST_URI}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,prometheus"

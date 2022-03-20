@@ -1,0 +1,20 @@
+<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+  <button mat-button class="menu-button" routerLink="/home" routerLinkActive="active">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </button>
+  <button mat-button class="menu-button" routerLink="/posts" routerLinkActive="active">
+    <mat-icon>chat_bubble_outline</mat-icon>
+    <span>Verses</span>
+  </button>
+  <div *ngIf="user">
+    <button mat-button class="users-button menu-button" routerLink="/users/{{user.id}}" routerLinkActive="active">
+      <mat-icon>person</mat-icon>
+      <span>My Profile</span>
+    </button>
+    <button mat-button class="users-button menu-button" routerLink="/users/{{user.id}}/edit" routerLinkActive="active">
+      <mat-icon>edit</mat-icon>
+      <span>Edit Profile</span>
+    </button>
+  </div>
+</div>

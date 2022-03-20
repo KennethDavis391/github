@@ -1,0 +1,10 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    url: ''
+    username: ''
+    password: ''
+    driver-class-name: org.postgresql.Driver

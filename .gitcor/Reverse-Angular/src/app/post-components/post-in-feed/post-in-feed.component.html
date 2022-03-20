@@ -1,0 +1,39 @@
+<div class="post-container">
+  <div class="postername" routerLink="/users/{{post.poster.id}}">
+    <mat-icon class="personicon">
+      person
+    </mat-icon>
+    <span class="posterfullname">{{post.poster.firstName}} {{post.poster.lastName}}    </span><span class="posterusername">@{{post.poster.username}}</span></div>
+  <div class="postmain">
+    <div class="postcontent">
+      <h1 class="post-title" [innerHTML] = "post.title"></h1>
+      <div class="post-body" [innerHTML] = "post.body"></div>
+    </div>
+    <div class="dateTime">
+      <p>{{post.created | date: 'longDate'}}</p>
+      <p>{{post.created | date: 'mediumTime'}}</p>
+    </div>
+  </div>
+  <div class="icon-container">
+    <div class="full-open-and-share">
+      <div class="open-in-full-with-text" routerLink="/posts/{{post.id}}">
+        <mat-icon class="icon">
+          open_in_full
+        </mat-icon>
+        <p>
+          Full Post
+        </p>
+      </div>
+      <div class="share">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw">
+          <mat-icon class="icon">
+            share
+          </mat-icon>
+          <span>
+            Share
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project3-userservice-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: userservice-deployment
+  template:
+    metadata:
+      labels:
+        app: userservice-deployment
+    spec:
+      containers:
+      - image: project2team4/userservice:latest
+        env:
+          - name: SECRET
+            value: jejdnejdneubdhebhevdevhdbjdnedbehbdetdevyjdfnkemdiendiebcevcebbcecuceicincuebchevcecvyduecie
+          - name: EUREKA_URI
+            value: http://35.239.70.25:8083/eureka
+          - name: ANGULAR_URI
+            value: http://34.69.17.73:80
+        imagePullPolicy: Always
+        name: userservicecontainer
+        ports: 
+        - containerPort: 8081
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: userservice-service
+  name: userservice
+  namespace: default
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http-userservice
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: userservice-deployment
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: user-service-monitor
+spec:
+  selector:
+    matchLabels:
+      app: userservice-service
+  endpoints:
+    - port: http-app1
+      path: "/actuator/prometheus"
+
+
+
+
+
+
+
+
+
