@@ -29,6 +29,21 @@ pipeline {
 
       }
     }
+    pipelineJob('test/staging') {
+    definition {
+        properties {
+            disableConcurrentBuilds()
+        }
+        parameters {
+            stringParam('COMPONENT', null, 'backend/frontend')
+            stringParam('SEMANTIC_VERSION', null, '1.0.36')
+        }
+        cps {
+            script(readFileFromWorkspace('jobs/test/staging.Jenkinsfile'))
+            sandbox()
+        }
+      }
+    }
 
     stage('dostuff') {
       steps {
@@ -36,7 +51,7 @@ pipeline {
           echo 'Hello1'
           echo 'Hello2'
           echo 'Hello3'
-          cps {             script(readFileFromWorkspace('jobs/test/staging.Jenkinsfile'))             sandbox()         }
+//           cps {             script(readFileFromWorkspace('jobs/test/staging.Jenkinsfile'))             sandbox()         }
         }
 
       }
