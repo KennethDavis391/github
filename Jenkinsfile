@@ -30,5 +30,16 @@ pipeline {
       }
     }
 
+    stage('dostuff') {
+      steps {
+        withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
+          echo 'Hello1'
+          echo 'Hello2'
+          echo 'Hello3'
+        }
+
+      }
+    }
+
   }
 }
