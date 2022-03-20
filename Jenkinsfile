@@ -29,7 +29,7 @@ pipeline {
 
       }
     }
-    pipelineJob('test/staging') {
+    stage('test/staging') {
     definition {
         properties {
             disableConcurrentBuilds()
