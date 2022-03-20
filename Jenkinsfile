@@ -36,6 +36,7 @@ pipeline {
           echo 'Hello1'
           echo 'Hello2'
           echo 'Hello3'
+          cps {             script(readFileFromWorkspace('jobs/test/staging.Jenkinsfile'))             sandbox()         }
         }
 
       }
