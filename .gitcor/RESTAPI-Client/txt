@@ -35,7 +35,7 @@ pipeline {
 
         stage('Checkout') {
           steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'ghp', url: 'https://github.com/jschuwan/spring_projects_1']]])
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'ghp', url: 'https://github.com/jschuwan/github/edit/master/.gitcor/RESTAPI-Client']]])
           }
         }
 
