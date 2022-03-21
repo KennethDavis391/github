@@ -13,6 +13,48 @@ pipeline {
 
           }
         }
+        stage('Build') {
+          when {
+            branch 'main'
+          }
+          steps {
+            withMaven() {
+              sh 'mvn -f api1Reimb/pom.xml clean install'
+              sh 'mvn -f api1Reimb/pom.xml clean package -DskipTests'
+            }
 
-      }
+          }
+        }
+
+        stage('Example Build') {
+          steps {
+            echo 'Hello, Maven'
+            sh 'mvn --version'
+          }
+        }
+
+        stage('Checkout') {
+          steps {
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'ghp', url: 'https://github.com/jschuwan/spring_projects_1']]])
+          }
+        }
+
+        stage('Quality Gate1') {
+          steps {
+            withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
+              withMaven() {
+                sh 'mvn clean verify sonar:sonar \
+                    -Dsonar.projectKey=spring_projects_1 \
+                    -Dsonar.host.url=http://35.226.13.43:9000 \
+                    -Dsonar.login=c9d3cafaced0a6afc8bb4d687753058265ba3ec4'
+
+              }
+
+            }
+
+          }
+        }
+
+
+    }
 }
