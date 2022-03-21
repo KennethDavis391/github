@@ -7,8 +7,7 @@ pipeline {
 //           deploymentFile = 'Kubernetes/deployment.yml'
 //
 //     }
-  agent {
-    any {
+  agent { any }
 //    label 'discovery-pod' 
 //    idleMinutes 5 
 //    yamlFile 'build-pod.yaml'  
