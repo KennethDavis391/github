@@ -30,7 +30,7 @@ pipeline {
 
         stage ('Invoke_pipelineA') {
                 steps {
-                    build (job: 'txt')
+                     build(job: './txt')
                 }
             }
 
