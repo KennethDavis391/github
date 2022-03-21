@@ -35,9 +35,7 @@ pipeline {
 
         stage('Checkout') {
           steps {
-            dir('backup/RESTAPI-Client/') {
-              checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'ghp', url: 'https://github.com/jschuwan/github']]])
-            }
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'ghp', url: 'https://github.com/jschuwan/github']]])
           }
         }
 
@@ -45,11 +43,12 @@ pipeline {
           steps {
             withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
               withMaven() {
-                sh 'mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=spring_projects_1 \
-                    -Dsonar.host.url=http://35.226.13.43:9000 \
-                    -Dsonar.login=c9d3cafaced0a6afc8bb4d687753058265ba3ec4'
-
+                  dir('backup/RESTAPI-Client/') {
+                    sh 'mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=spring_projects_1 \
+                        -Dsonar.host.url=http://35.226.13.43:9000 \
+                        -Dsonar.login=c9d3cafaced0a6afc8bb4d687753058265ba3ec4'
+                  }
               }
 
             }
