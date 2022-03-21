@@ -4,17 +4,17 @@ pipeline {
 //           registry = 'javasre2022/discovery'
 //           dockerHubCreds = 'docker_hub'
 //           dockerImage = ''
-//           deploymentFile = 'k8s/deployment.yml'
+//           deploymentFile = 'Kubernetes/deployment.yml'
 //
 //     }
-  agent {
-    any {
-    label 'discovery-pod' 
-    idleMinutes 5 
-    yamlFile 'build-pod.yaml'  
-    defaultContainer 'maven'  
-    }
-  }
+//  agent {
+//    any {
+//    label 'discovery-pod' 
+//    idleMinutes 5 
+//    yamlFile 'build-pod.yaml'  
+//    defaultContainer 'maven'  
+//    }
+//  }
 
   stages {
     stage('Test') {
