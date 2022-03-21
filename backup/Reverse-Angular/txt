@@ -53,18 +53,18 @@ pipeline {
         }
     }
 
-      stage('Deploy to GKE') {
-        agent {
-                          kubernetes {
-                            label 'discovery'
-                            idleMinutes 20
-                            yamlFile 'deployment.yml'
-                          }
-                 }
-              steps{
-                echo 'deploy'
-              }
-      }
+//      stage('Deploy to GKE') {
+//        agent {
+//                         kubernetes {
+//                            label 'discovery'
+//                            idleMinutes 20
+//                            yamlFile 'deployment.yml'
+//                          }
+//                 }
+//              steps{
+//                echo 'deploy'
+//              }
+//      }
 
 //                  sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./k8s/deployment.yml'
 //                  sh 'cat ./k8s/deployment.yml'
