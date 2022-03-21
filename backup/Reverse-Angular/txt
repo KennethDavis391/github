@@ -24,15 +24,19 @@ pipeline {
 
           stage('Test') {
             steps {
-              sh 'mvn -f pom.xml test'
+                dir('backup/Reverse-Angular/') {
+                  sh 'mvn -f pom.xml test'
+                }
             }
           }
 
         stage('Build') {
                   steps {
                     withMaven {
-                      sh 'mvn -f pom.xml clean install'
-                      sh 'mvn -f pom.xml clean package -DskipTests'
+                        dir('backup/Reverse-Angular/') {
+                          sh 'mvn -f pom.xml clean install'
+                          sh 'mvn -f pom.xml clean package -DskipTests'
+                        }
                     }
                   }
          }
