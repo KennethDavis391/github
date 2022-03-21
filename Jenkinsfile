@@ -27,12 +27,13 @@ pipeline {
           }
         }
 
-
-        stage ('Invoke_pipelineA') {
-                steps {
-                     build(job: './txt')
-                }
-            }
+        stage('Invoke_pipelineA') {
+          steps {
+            sh 'pwd'
+            sh 'ls'
+            build './txt'
+          }
+        }
 
         stage('dostuff') {
           steps {
@@ -40,7 +41,6 @@ pipeline {
               echo 'Hello1'
               echo 'Hello2'
               echo 'Hello3'
-
             }
 
           }
@@ -48,5 +48,6 @@ pipeline {
 
       }
     }
-}
+
+  }
 }
