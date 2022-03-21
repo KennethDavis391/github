@@ -1,4 +1,4 @@
-pipeline A{
+pipeline {
   agent any
   stages {
     stage('CheckJAVA') {
@@ -31,7 +31,7 @@ pipeline A{
           steps {
             sh 'pwd'
             sh 'ls'
-            build './txt'
+            build 'txt'
           }
         }
 
