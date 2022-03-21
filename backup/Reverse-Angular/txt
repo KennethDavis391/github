@@ -1,0 +1,90 @@
+pipeline {
+//
+//   environment {
+//           registry = 'javasre2022/discovery'
+//           dockerHubCreds = 'docker_hub'
+//           dockerImage = ''
+//           deploymentFile = 'k8s/deployment.yml'
+//
+//     }
+  agent {
+    kubernetes {
+    label 'discovery-pod' 
+    idleMinutes 5 
+    yamlFile 'build-pod.yaml'  
+    defaultContainer 'maven'  
+    }
+  }
+
+  stages {
+    stage('Test') {
+      steps {
+        sh 'mvn -f pom.xml test'
+      }
+    }
+
+  stage('Build') {
+            steps {
+              withMaven {
+                sh 'mvn -f pom.xml clean install'
+                sh 'mvn -f pom.xml clean package -DskipTests'
+              }
+            }
+   }
+
+   stage('Docker Build') {
+     steps {
+       container('docker') {  
+          script {
+            sh "docker build -t javasre2022/discovery ."
+          }
+        }
+     }
+   }
+
+   stage('Docker Deliver') {
+        steps {
+          container('docker') {
+            script {
+              sh "docker login -u javasre2022 -p 01-18-2022"
+              sh "docker push javasre2022/discovery"
+            }
+          }
+        }
+    }
+
+      stage('Deploy to GKE') {
+        agent {
+                          kubernetes {
+                            label 'discovery'
+                            idleMinutes 20
+                            yamlFile 'deployment.yml'
+                          }
+                 }
+              steps{
+                echo 'deploy'
+              }
+      }
+
+//                  sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./k8s/deployment.yml'
+//                  sh 'cat ./k8s/deployment.yml'
+//                  sh 'kubectl get pod'
+//                  step([$class: 'KubernetesEngineBuilder',
+//                       projectId: 'reverse-devops-sre',
+//                       clusterName: 'Reverse-DevOps-SRE',
+//                       zone: 'us-central1',
+//                       manifestPattern: 'k8s/',
+//                       credentialsId: '2e157ef7-d3ec-43e8-8d17-e46b0da383d3',
+//                       verifyDeployments: true
+//                  ])
+//
+//                  cleanWs()
+//
+//                  discordSend description: "Build #$currentBuild.number",
+//                       link: BUILD_URL, result: currentBuild.currentResult,
+//                       title: JOB_NAME,
+//                       webhookURL: "https://discord.com/api/webhooks/946097550514061343/7IRGxvAsw24cbGPIHXE15gtxCvzQQtRl3e5DEcm7arQpC6x3cVJPXXWZo7UWHKyJumuW"
+//               }
+//       }
+  }
+}
