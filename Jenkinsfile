@@ -1,4 +1,4 @@
-pipeline {
+pipeline A{
   agent any
   stages {
     stage('CheckJAVA') {
