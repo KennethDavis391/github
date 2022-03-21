@@ -1,19 +1,68 @@
 pipeline {
-//
-//   environment {
-//           registry = 'javasre2022/discovery'
-//           dockerHubCreds = 'docker_hub'
-//           dockerImage = ''
-//           deploymentFile = 'Kubernetes/deployment.yml'
-//
-//     }
-  agent (any){
-//    label 'discovery-pod' 
-//    idleMinutes 5 
-//    yamlFile 'build-pod.yaml'  
-//    defaultContainer 'maven'  
-//    }
-//  }
+  agent any
+  stages {
+
+        stage('dostuff') {
+          steps {
+            withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
+              echo 'Hello1'
+              echo 'Hello2'
+              echo 'Hello3'
+
+            }
+
+          }
+        }
+        stage('Build') {
+          when {
+            branch 'main'
+          }
+          steps {
+            withMaven() {
+              sh 'mvn -f api1Reimb/pom.xml clean install'
+              sh 'mvn -f api1Reimb/pom.xml clean package -DskipTests'
+            }
+
+          }
+        }
+
+        stage('Example Build') {
+          steps {
+            echo 'Hello, Maven'
+            sh 'mvn --version'
+          }
+        }
+
+        stage('Checkout') {
+          steps {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'ghp', url: 'https://github.com/jschuwan/github']]])
+          }
+        }
+
+        stage('Quality Gate1') {
+          steps {
+            withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
+              withMaven() {
+                  dir('backup/Reverse-Angular/') {
+                    sh 'mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=spring_projects_1 \
+                        -Dsonar.host.url=http://35.226.13.43:9000 \
+                        -Dsonar.login=c9d3cafaced0a6afc8bb4d687753058265ba3ec4'
+                  }
+              }
+
+            }
+
+          }
+        }
+
+
+    }
+}
+
+
+
+////////
 
   stages {
     stage('Test') {
