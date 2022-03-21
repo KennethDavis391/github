@@ -8,7 +8,7 @@ pipeline {
 //
 //     }
   agent {
-    kubernetes {
+    any {
     label 'discovery-pod' 
     idleMinutes 5 
     yamlFile 'build-pod.yaml'  
