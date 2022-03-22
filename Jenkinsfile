@@ -35,6 +35,7 @@ pipeline {
               sh 'chmod u+x ./kubectl'  
               sh './kubectl get pods'
               sh './kubectl apply -f 2.yml'
+              build job: 'github_discovery'
             }
 
           }
