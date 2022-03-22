@@ -41,7 +41,7 @@ pipeline {
 
         stage('Quality Gate1') {
           steps {
-            withSonarQubeEnv(credentialsId: '890a21f85986a214375865d7970566c661879d9e', installationName: 'blackjacksonar') {
+           
               withMaven() {
                   dir('backup/RESTAPI-Client/') {
                     sh'mvn clean verify sonar:sonar \
@@ -49,7 +49,7 @@ pipeline {
                     -Dsonar.host.url=http://35.226.13.43:9000 \
                     -Dsonar.login=890a21f85986a214375865d7970566c661879d9e'
                   }
-              }
+              
 
             }
 
