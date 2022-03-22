@@ -30,12 +30,11 @@ pipeline {
         stage('DeployToCluster') {
           steps {
             withKubeConfig(credentialsId: '640528ae-327c-40c0-889e-ecd24de99102', serverUrl: 'https://35.232.148.254') {
-
-              sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
-              sh 'chmod u+x ./kubectl'  
+              sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'
+              sh 'chmod u+x ./kubectl'
               sh './kubectl get pods'
               sh './kubectl apply -f 2.yml'
-              build job: '../github_discovery/master'
+              build '../github_discovery/master'
             }
 
           }
