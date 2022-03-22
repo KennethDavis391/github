@@ -41,10 +41,12 @@ pipeline {
 //           }
 //         }
         stage('Apply Kubernetes files') {
-            withKubeConfig([credentialsId: 'fed8dee1-b7f0-46ea-bf90-694bcb21019f', serverUrl: 'https://34.123.116.172']) {
-              sh 'kubectl apply -f my-kubernetes-directory'
+            steps{
+                withKubeConfig([credentialsId: 'fed8dee1-b7f0-46ea-bf90-694bcb21019f', serverUrl: 'https://34.123.116.172']) {
+                  sh 'kubectl apply -f my-kubernetes-directory'
+                }
             }
-          }
+         }
 
       }
     }
