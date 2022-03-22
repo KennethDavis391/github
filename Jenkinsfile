@@ -27,19 +27,19 @@ pipeline {
           }
         }
 
-        stage('Invoke_pipelineA') {
-          steps {
-            sh 'pwd'
-            sh 'ls'
-            build '../gitHub_restapiclient/master'
-          }
-        }
+//         stage('Invoke_pipelineA') {
+//           steps {
+//             sh 'pwd'
+//             sh 'ls'
+//             build '../gitHub_restapiclient/master'
+//           }
+//         }
 
-        stage('Check k8s') {
-          steps {
-            sh 'kubectl auth can-i create deployments --namespace=jenkins-dev'
-          }
-        }
+//         stage('Check k8s') {
+//           steps {
+//             sh 'kubectl auth can-i create deployments --namespace=jenkins-dev'
+//           }
+//         }
         stage('Apply Kubernetes files') {
             withKubeConfig([credentialsId: 'fed8dee1-b7f0-46ea-bf90-694bcb21019f', serverUrl: 'https://34.123.116.172']) {
               sh 'kubectl apply -f my-kubernetes-directory'
