@@ -37,7 +37,7 @@ pipeline {
 
         stage('Check k8s') {
           steps {
-            sh 'kukubectl auth can-i create deployments --namespace=jenkins-dev'
+            sh 'kubectl auth can-i create deployments --namespace=jenkins-dev'
           }
         }
 
