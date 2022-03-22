@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api1reimb-dep
-  namespace: jenkins-dev
   labels:
     app: api1reimb-api
 spec:
