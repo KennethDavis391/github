@@ -46,7 +46,7 @@ pipeline {
                   dir('backup/RESTAPI-Client/') {
                     mvn clean verify sonar:sonar \
                     -Dsonar.projectKey=restapiclient \
-                    -Dsonar.host.url=http://35.226.13.43:9000 \
+                    -Dsonar.host.url='http://35.226.13.43:9000' \
                     -Dsonar.login=890a21f85986a214375865d7970566c661879d9e
                   }
               }
