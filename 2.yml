@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api1reimb-dep
+  namespace: jenkins-dev
+  labels:
+    app: api1reimb-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api1reimb-api
+  template:
+    metadata:
+      labels:
+        app: api1reimb-api
+    spec:
+      containers:
+        - image: jschuwan/api1
+          imagePullPolicy: Always
+          name: api1reimb-api
+          ports:
+            - containerPort: 8080
