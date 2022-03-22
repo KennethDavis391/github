@@ -31,7 +31,7 @@ pipeline {
           steps {
             sh 'pwd'
             sh 'ls'
-            build '../gitHub_restapiclient/master'
+            build '../backup/gitHub_restapiclient/master'
           }
         }
 
