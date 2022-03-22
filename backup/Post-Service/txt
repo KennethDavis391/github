@@ -41,15 +41,15 @@ pipeline {
 
         stage('Quality Gate1') {
           steps {
-            withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
+           
               withMaven() {
-                  dir('backup/Post-Service/') {
-                    sh 'mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=spring_projects_1 \
-                        -Dsonar.host.url=http://35.226.13.43:9000 \
-                        -Dsonar.login=c9d3cafaced0a6afc8bb4d687753058265ba3ec4'
+                  dir('backup/RESTAPI-Client/') {
+                    sh'mvn clean verify sonar:sonar \
+                    -Dsonar.projectKey=Discovery \
+                    -Dsonar.host.url=http://35.226.13.43:9000 \
+                    -Dsonar.login=890a21f85986a214375865d7970566c661879d9e'
                   }
-              }
+              
 
             }
 
