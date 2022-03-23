@@ -41,13 +41,12 @@ pipeline {
 
         stage('Quality Gate1') {
           steps {
-            withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
-              withMaven() {
                   dir('backup/User-Service/') {
+                  script{
                     sh 'mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=spring_projects_1 \
-                        -Dsonar.host.url=http://35.226.13.43:9000 \
-                        -Dsonar.login=c9d3cafaced0a6afc8bb4d687753058265ba3ec4'
+                    -Dsonar.projectKey=User-service \
+                    -Dsonar.host.url=http://35.222.177.228:9000 \
+                    -Dsonar.login=61072435882689d3d022fed333f1fe524f275ad0'
                   }
               }
 
