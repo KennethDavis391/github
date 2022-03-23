@@ -34,7 +34,7 @@ pipeline {
               sh 'chmod u+x ./kubectl'
               sh './kubectl get pods'
 //               sh './kubectl apply -f 1.yml'
-              build '../github_discovery/master'
+              build '../github_gateway/master'
             }
 
           }
