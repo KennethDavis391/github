@@ -2,17 +2,7 @@ pipeline {
   agent any
   stages {
 
-        stage('dostuff') {
-          steps {
-            withSonarQubeEnv(credentialsId: 'c9d3cafaced0a6afc8bb4d687753058265ba3ec4', installationName: 'blackjacksonar') {
-              echo 'Hello1'
-              echo 'Hello2'
-              echo 'Hello3'
-
-            }
-
-          }
-        }
+  
         stage('Build') {
           when {
             branch 'main'
@@ -41,13 +31,13 @@ pipeline {
 
         stage('Quality Gate1') {
           steps {
-           
-              withMaven() {
-                  dir('backup/RESTAPI-Client/') {
+
+                  dir('backup/Post-Service/') {
+                    script{
                     sh'mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=Discovery \
-                    -Dsonar.host.url=http://35.226.13.43:9000 \
-                    -Dsonar.login=890a21f85986a214375865d7970566c661879d9e'
+                    -Dsonar.projectKey=Post-service \
+                    -Dsonar.host.url=http://35.222.177.228:9000 \
+                    -Dsonar.login=45499a6ff15b3dbf936db9278fc14e43ea283295'
                   }
               
 
