@@ -34,17 +34,16 @@ pipeline {
 //              withMaven() {
             stage('Quality Gate1') {
                 steps {
-                   dir('backup/Gateway/') {
-                          script {
-                  dir('backup/Gateway/') {
-                    sh'mvn clean verify sonar:sonar \
-                      -Dsonar.projectKey=Gateway \
-                      -Dsonar.host.url=http://35.222.177.228:9000 \
-                      -Dsonar.login=a262a0700e8e3423ee5d9c0de60fb166a9e5f5d0'
-                  }
-              }
+                    script {
+                      dir('backup/Gateway/') {
+                        sh'mvn clean verify sonar:sonar \
+                          -Dsonar.projectKey=Gateway \
+                          -Dsonar.host.url=http://35.222.177.228:9000 \
+                          -Dsonar.login=a262a0700e8e3423ee5d9c0de60fb166a9e5f5d0'
+                        }
+                      }
 
-            }
+                 }
 
           }
         }
