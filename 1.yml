@@ -1,11 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube-dep
+  labels:
+    app:  sonarqube008
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarqube008
+  template:
+    metadata:
+      labels:
+        app: sonarqube008
+    spec:
+      containers:
+        - image:  sonarqube:latest
+          imagePullPolicy: Always
+          name: sonarqube
+          resources:
+            limits:
+              cpu: 1
+              memory: 2Gi
+            requests:
+              cpu: 400m
+            memory: 500Mi
+          ports:
+            - containerPort: 9000
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: sonarqube008-service
-  namespace: sonarqube
 spec:
   selector:
-    app: sonarqube-sonarqube
+    app: sonarqube008
   type: LoadBalancer
   ports:
     - port: 9000
