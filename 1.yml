@@ -21,11 +21,10 @@ spec:
           name: sonarqube
           resources:
             limits:
-              cpu: 1
               memory: 2Gi
             requests:
               cpu: 400m
-            memory: 500Mi
+              memory: 500Mi
           ports:
             - containerPort: 9000
 ---
