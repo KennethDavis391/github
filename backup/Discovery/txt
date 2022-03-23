@@ -41,7 +41,7 @@ pipeline {
           steps {
            
               withMaven() {
-                  dir('backup/RESTAPI-Client/') {
+                  dir('backup/Discovery/') {
                     sh 'mvn clean verify sonar:sonar \
                           -Dsonar.projectKey=Discovery \
                           -Dsonar.host.url=http://35.222.177.228:9000 \
