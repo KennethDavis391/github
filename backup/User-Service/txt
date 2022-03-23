@@ -40,7 +40,8 @@ pipeline {
         }
 
         stage('Quality Gate1') {
-          steps {
+                  steps {
+
                   dir('backup/User-Service/') {
                   script{
                     sh 'mvn clean verify sonar:sonar \
@@ -53,7 +54,7 @@ pipeline {
             }
 
           }
-        }
+       
 
 
     }
